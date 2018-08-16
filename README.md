@@ -1,4 +1,4 @@
-# vue-music
+# vue-music（完善中）
 基于vue全家桶、webpack开发的单页面应用
 
 
