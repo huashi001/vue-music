@@ -48,7 +48,7 @@ export default {
       let re = /^\w{6,9}$/;
       return re.test(password)
     }
-  },
+  }
 }
 </script>
 

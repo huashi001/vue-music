@@ -13,7 +13,7 @@ import MusicList from 'components/music-list/music-list'
 import UserLogin from 'components/user-login/user-login'
 import UserCenter from 'components/user-center/user-center';
 
-export default new Router({
+const router = new Router({
   routes: [
     {
       path: '/',
@@ -58,14 +58,27 @@ export default new Router({
     {
       path: '/user/center',
       component: UserCenter,
-      beforeEnter:(to, from, next) => {
-        if(!this.$store.getters.userName){
-          console.log(123456789)
-          return ;
-        }
-        next();
+      meta:{
+        requiresAuth:true
       }
     }
 
   ]
-})
+});
+router.beforeEach((to,from,next)=>{
+  if(to.matched.some(record=>record.meta.requiresAuth)){
+    //console.log(router.app.$options.store.state.userName)
+    let user = router.app.$options.store.state.userName;
+    if(!user){
+      next({
+        path:'/recommend'
+      })
+    }else{
+      next();
+    }
+  }else{
+    next();
+  }
+});
+
+export default router;
