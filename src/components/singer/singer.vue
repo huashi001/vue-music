@@ -33,6 +33,7 @@ export default {
       this.$router.push({
         path:`/singer/${item.singer_id}`
       });
+      console.log(item)
       this.$store.commit('SET_SINGER',item);
     },
     _getSingerList(){

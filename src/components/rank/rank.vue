@@ -39,7 +39,10 @@
     methods:{
       selectItem(item){
         this.$router.push({
-          path: `rank/${item.id}`
+          path: `rank/${item.id}`,
+          query: {
+            a: 1
+          }
         })
         this.$store.commit('SET_SINGER',item)
       },

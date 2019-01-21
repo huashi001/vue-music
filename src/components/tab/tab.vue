@@ -16,7 +16,11 @@
 </template>
 
 <script>
-export default {};
+export default {
+  created(){
+    console.log("aaa")
+  }
+};
 </script>
 
 <style scoped lang='stylus' rel='stylesheet/stylus'>

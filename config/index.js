@@ -23,7 +23,7 @@ module.exports = {
   },
   dev: {
     env: require('./dev.env'),
-    port: 8080,
+    port: 8090,
     autoOpenBrowser: false,
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
@@ -34,6 +34,13 @@ module.exports = {
         pathRewrite:{
           '^/huashi':''
         }
+      },
+      '/cas/login': {
+        target: 'http://192.168.2.84:8080',
+        changeOrigin: true,
+        // pathRewrite:{
+        //   '^/huashi':''
+        // }
       }
     },
     // CSS Sourcemaps off by default because relative paths are "buggy"

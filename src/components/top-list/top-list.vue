@@ -1,7 +1,8 @@
 <template>
   <transition name="slider">
   <div class="toplist">
-     <span>111</span>
+     <span>{{this.$route.query}}</span>
+     <span>1111</span>
   </div>
   </transition>
   
@@ -11,6 +12,8 @@
 export default {
   created(){
     //console.log(this.$store.getters.singer)
+
+      console.log(this.$route)
   }
 };
 </script>

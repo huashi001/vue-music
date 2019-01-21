@@ -5,6 +5,7 @@
       <div class='err' v-show="errTip">用户名或密码错误</div>
       <input type="text" name="nam"  placeholder="用户名" class="shuru" v-model="name">
       <input type="password" name="psw"  placeholder="密码" class="shuru" v-model="password">
+      <input type="text" name="jigou"  placeholder="机构" class="shuru" v-model="jigou">
       <input type="button" value="登录" class='shuru submit' @click="login">
     </div>
   </div>
@@ -17,6 +18,7 @@ export default {
     return {
       name:'',
       password: '',
+      jigou: '',
       errTip: false
     };
   },
@@ -25,20 +27,20 @@ export default {
       if(!this.isValidName(this.name)||!this.isValidPsd(this.password)){
        this.errTip = true;
       }else{
-        //to-do
         this.errTip = false;
         this.$store.commit('CHANGELOG',this.name)
         this.$router.push('/');
-        // axios.post('/huashi/users',{
-        //   params:{
-        //     name: this.name,
-        //     psd: this.password
-        //   }
-        // })
+        /* axios.post('/cas/login',{
+          params:{
+            phone: this.name,
+            password: this.password,
+            code: this.jigou
+          }
+        }) */
       }
     },
     isValidName(name){
-      //八位数字，08开头
+      // 八位数字，08开头
       let re = /^08\d{6}$/
       return re.test(name)
 
