@@ -1,6 +1,7 @@
 <template>
   <div class="search">
     <ax></ax>
+
   </div>
 </template>
 

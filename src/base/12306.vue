@@ -1,15 +1,23 @@
 <template>
   <div ref="wrapper" class="wrapper">
+    <div style="overflow:hidden" ref="test">
     <ul ref="ul">
-      <li v-for="item in items" @click="a">
-        <img :src="item.icon" alt="1" width="40px">
-        <div>{{ item.title }}</div>
+      <li v-for="item in items" @click="a" style="display: relative">
+        <div class="item">
+          <img :src="item.icon" alt="1" width="40px">
+          <div style="margin-top: 5px">{{ item.title }}</div>
+        </div>
       </li>
     </ul>
+    </div>
+    <div>
+      <span v-for="item in a">-</span>
+    </div>
   </div>
 </template>
 
 <script>
+import {addClass} from "common/js/dom"
 export default {
   data () {
     return {
@@ -47,20 +55,40 @@ export default {
     };
   },
 
-  computed: {},
+  computed: {
+   a() {
+     return [1,2,3]
+   }
+  },
 
   methods: {
     a(){
-      this.x-=375
-      console.log(this.$refs.ul)
+      let width = this.$refs.wrapper.clientWidth
+      let singleWidth = (width-20)/5
+      if(this.x==-(width-20)){
+        this.x+=width-20
+      }else{
+        this.x-=width-20
+      }
+      //console.log(this.$refs.ul)
       let oUl = this.$refs.ul
       oUl.style.transform = `translate(${this.x}px,0)`
+      oUl.style.transitionDuration = '1s'
     }
   },
 
   mounted(){
-    let wrapper = this.$refs.wrapper
-    console.log(wrapper)
+    let width = this.$refs.wrapper.clientWidth
+    let singleWidth = Math.floor((width-20)/5)
+    console.log(singleWidth)
+    let oUl = this.$refs.ul
+    let children = oUl.children
+    oUl.style.width = singleWidth * children.length + 'px'
+    this.$refs.test.style.width = singleWidth * 5 + 'px'
+    this.$refs.test.style.paddingLeft = (width - singleWidth * 5 -20)/2 + 'px'
+    for(let i=0;i<children.length;i++){
+      children[i].style.width = singleWidth + 'px'
+    }
   }
 
 }
@@ -70,22 +98,25 @@ export default {
 .wrapper{
   background #ccc
   color #000
-  padding 10px 10px
-  width 375px
+  padding 10px 10px 0 10px
   box-sizing border-box
   overflow hidden
+  font-size: 14px
 }
 ul{
-  width: 500px;
   overflow hidden
-  display: flex
   transform translate(0px,0)
+  height 70px
 }
 li{
-  width: 60px
-  margin-left: 20px
+  height 70px
+  float: left
+  position: relative
+  text-align: center
 }
 li:first-child{
   margin-left: 0px
+}
+.item{
 }
 </style>

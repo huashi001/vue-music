@@ -55,6 +55,7 @@
 
         let width = 0
         let sliderWidth = this.$refs.slider.clientWidth   // 客户端宽度
+        console.log(this.$refs.slider)
         for (let i = 0; i < this.children.length; i++) {
           let child = this.children[i]
           addClass(child, 'slider-item')
